@@ -7,7 +7,7 @@ import Footer from '../components/footer'
 import Container from '../components/container'
 import { extractRepositories, QueryData } from '../data/github'
 import { useMixpanel } from 'gatsby-plugin-mixpanel'
-import { SUBSCRIBED, GITHUB_CLICKS, GITPOD_CLICKS } from '../mixpanel'
+import { SUBSCRIBED, GITHUB_CLICKS, GITPOD_CLICKS, campaignParams } from '../mixpanel'
 
 const App = (props: { data: QueryData }) => {
   const [repositories, setRepositories] = React.useState(
@@ -36,6 +36,7 @@ const App = (props: { data: QueryData }) => {
       [GITPOD_CLICKS]: 0, 
       [GITHUB_CLICKS]: 0})
     mixpanel.people.set_once("First time touch examples", new Date().toString() )
+    campaignParams(mixpanel)
   }, [])
 
 
